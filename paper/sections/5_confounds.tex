@@ -1,0 +1,55 @@
+\section{Confounds, honest disclosure, and analysis}
+\label{sec:confounds}
+
+The experiments support a selective deployment method, not a broad UV optimizer. This section makes the confounds explicit: what the accepted gains do not depend on, what they do depend on, and where the current evidence is weak.
+
+\subsection{Strict matched controls}
+\label{sec:matched_controls}
+
+\input{tables/table3_matched}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.95\linewidth]{figures/main/fig5_matched.pdf}
+  \caption{Strict matched controls for the accepted PartUV cases. Gains persist when atlas size, padding, or chart count are locked, but vanish under distortion, utilization, or all strict matched controls, indicating a principled downstream-fidelity trade-off.}
+  \label{fig:matched_control}
+\end{figure}
+
+\Cref{tab:matched,fig:matched_control} rule out three simple explanations. The spot and bunny gains persist when atlas size and padding are locked, and they also persist when chart count is locked within the matched protocol. The method is therefore not merely buying a larger texture, adding padding, or increasing chart count.
+
+The same table also shows the cost of the method. When distortion \(Q_{95}\), packing utilization, or all strict controls are locked, both accepted PartUV cases roll back to baseline. The gain requires localized freedom in distortion and utilization. We interpret this as a principled trade-off: classical UV metrics are useful proxies for atlas geometry and packing efficiency, but they are not equivalent to downstream PBR relighting fidelity. The method spends distortion/utilization slack only when the residual evidence and C5 gate justify the exchange.
+
+\paragraph*{Semantic preservation.}
+\input{tables/table7_purity}
+Chart--part purity gives a quantitative reason not to replace PartUV with xatlas when part organization is a pipeline constraint. Using the PartUV leaf-chart partition as the reference part proxy, xatlas purity is lower on spot, bunny, and the Objaverse asset, while PartUV and our repaired output remain at the reference purity. \emph{This metric is partition-dependent}: by construction, our repair never globally re-charts, and PartUV is taken as the reference partition, so the purity comparison is a direct check of whether xatlas's global re-charting violates the chosen partition. It is therefore a witness for "does PartUV-style chart organization survive repair?" rather than a venue-independent editability score; we treat human-labeled part purity, downstream rig-aware editing, and accessory transfer benchmarks as future evaluation work.
+
+To avoid relying only on the PartUV-derived reference partition, we add the curvature-alignment metric in \cref{tab:curvature_alignment}. It treats high-dihedral mesh edges as a geometry-only proxy for part-like boundaries and computes chart-boundary IoU/precision against that set. This metric still is not a human editing benchmark, but it removes the tautology that PartUV-defined parts automatically favor PartUV-preserving repairs.
+
+\subsection{Selective trigger rate}
+\label{sec:selective_trigger}
+
+Across the 12 Main Anchor Evaluation cases and eight Transfer and Robustness Study transfer cases, C5 accepts three repairs and rolls back 17 candidates. The accepted cases are spot/PartUV, bunny/PartUV, and procedural warped cylinder, giving a 3/20 trigger rate over the displayed tested rows. The A1 key-case rerun in \cref{tab:a1_split} separately checks two accepted PartUV cases (spot, bunny) and two rollback controls (spot/xatlas, Objaverse/xatlas) across three disjoint proposal/gate/test split seeds. Accepted PartUV gains persist on the held-out test split (spot $+12.58 \pm 0.83$ dB, bunny $+11.84 \pm 0.89$ dB), and the rollback controls stay at $\Delta = 0.00 \pm 0.00$ dB across all three seeds, so the headline gain is not an artifact of evaluating on the same residual signal that drove repair selection. This is a leakage-control audit rather than a replacement for the full single-seed table. The discrepancy between candidates and deployed outputs is deliberate: the method is allowed to search, but deployment is gated. This matters most for already-good xatlas rows and for procedural transfer rows where a high-PSNR candidate can still violate seam, distortion, or utilization guards. Those candidates are not deployed.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.95\linewidth]{figures/qualitative_residual_chain/rollback_gallery.pdf}
+  \caption{Rollback gallery. The method can propose edits for cases where the residual atlas suggests a possible repair, but C5 deploys the baseline when held-out relighting and seam metrics do not justify the change.}
+  \label{fig:rollback_gallery}
+\end{figure}
+
+\Cref{fig:rollback_gallery} visualizes this non-harm behavior. It is not evidence that every attempted edit is visually useful; it is evidence that failed candidates can be filtered out before deployment.
+
+\subsection{C4 and weak isolated signals}
+\label{sec:c4_disclosure}
+
+C4 is included because PBR seams are cross-channel: albedo, normal, roughness, and metallic discontinuities are not perceptually interchangeable. However, the present ablations do not prove C4 as a standalone necessary component. A5 and A9 are zero-signal in the completed table, and the current hooks may not isolate channel coupling cleanly. We therefore keep C4 as a diagnostic regularizer and reporting tool rather than a top-level claim. The stronger channel evidence comes from A2, where collapsing the baker to RGB-only loses about 12.5 dB.
+
+\subsection{Baseline reproduction scope}
+\label{sec:baseline_scope}
+
+The baseline story is intentionally bounded. The main table uses xatlas, Blender Smart UV, real PartUV, and a matched oracle. FlexPara was blocked by Python/PyTorch/CUDA-op/checkpoint constraints, OT-UVGS was treated as an unverified adjacent capacity idea rather than a direct mesh-UV reproduction, and Flatten Anything and ParaPoint were not fully runnable in the available environment. These failures are not hidden; \cref{app:baseline_failure} gives the reproduction table used to scope the claims.
+
+\subsection{Noise anomaly}
+\label{sec:noise_anomaly}
+
+The robustness sweep contains a non-monotonic mesh-noise anomaly. At \(\sigma=0.01\), the spot/PartUV case rolls back and PSNR drops sharply; at \(\sigma=0.02\) and \(\sigma=0.05\), the method accepts and recovers high PSNR. A plausible explanation is that small noise moves the PartUV result into a boundary case where chart structure changes without creating repair leverage, while larger noise produces a clearer residual pattern. The current data are insufficient to resolve this, so the anomaly is reported as a limitation rather than averaged away.

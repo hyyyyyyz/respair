@@ -1,0 +1,14 @@
+\begin{table}[t]
+\centering
+\caption{Chart-part purity comparison (\cref{sec:confounds}). PartUV and our repaired output preserve part semantics perfectly relative to the PartUV part hierarchy; xatlas re-charting reduces purity, with entropy growing on assets that have many small parts.}
+\label{tab:purity}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Asset & xatlas Purity & PartUV Purity & Ours Purity & xatlas Entropy \\
+\midrule
+spot & 0.878 & \textbf{1.000} & \textbf{1.000} & 0.079 \\
+bunny & 0.866 & \textbf{1.000} & \textbf{1.000} & 0.509 \\
+objaverse & 0.783 & \textbf{1.000} & \textbf{1.000} & 0.594 \\
+\bottomrule
+\end{tabular}
+\end{table}

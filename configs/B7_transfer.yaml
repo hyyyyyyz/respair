@@ -1,0 +1,22 @@
+inherits: B3_main.yaml
+data_root: /data/dip_1_ws/datasets/B7_generated
+output_root: /data/dip_1_ws/runs/B7_transfer
+b7_transfer:
+  asset_alias_for_b3: objaverse_sample
+  robustness_root: /data/dip_1_ws/runs/B7_robustness
+  generated_count: 8
+  assets:
+    - proc_lumpy_ico
+    - proc_dented_torus
+    - proc_crumpled_box
+    - proc_warped_cylinder
+    - proc_twisted_cone
+    - proc_noisy_capsule
+    - proc_ridged_sphere
+    - proc_pinched_ico
+  baseline: partuv
+  methods:
+    - baseline_only
+    - ours
+  delta_psnr_brief_min: 3.0
+  pass_fraction_min: 0.5

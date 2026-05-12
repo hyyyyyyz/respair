@@ -1,0 +1,16 @@
+[
+  {"file": "blub.obj", "asset_id": "ts_blub", "source": "threestudio_init_shape", "category": "sds_pipeline_base"},
+  {"file": "potion.obj", "asset_id": "ts_potion", "source": "threestudio_init_shape", "category": "sds_pipeline_base"},
+  {"file": "animal.obj", "asset_id": "ts_animal", "source": "threestudio_init_shape", "category": "sds_pipeline_base"},
+  {"file": "teddy.obj", "asset_id": "ts_teddy", "source": "threestudio_init_shape", "category": "sds_pipeline_base"},
+  {"file": "cabin.obj", "asset_id": "ts_cabin", "source": "threestudio_init_shape", "category": "sds_pipeline_base"},
+  {"file": "human.obj", "asset_id": "ts_human", "source": "threestudio_init_shape", "category": "sds_pipeline_base"},
+  {"file": "nascar.obj", "asset_id": "ts_nascar", "source": "threestudio_init_shape", "category": "sds_pipeline_base"},
+  {"file": "hand_prismatic.obj", "asset_id": "ts_hand", "source": "threestudio_init_shape", "category": "sds_pipeline_base"},
+  {"file": "env_sphere.obj", "asset_id": "ts_env_sphere", "source": "threestudio_init_shape", "category": "sds_pipeline_base"},
+  {"file": "fantasia3d_animal.obj", "asset_id": "f3d_animal", "source": "fantasia3d_data", "category": "sds_pipeline_base"},
+  {"file": "fantasia3d_chair.obj", "asset_id": "f3d_chair", "source": "fantasia3d_data", "category": "sds_pipeline_base"},
+  {"file": "fantasia3d_head.obj", "asset_id": "f3d_head", "source": "fantasia3d_data", "category": "sds_pipeline_base"},
+  {"file": "fantasia3d_person.obj", "asset_id": "f3d_person", "source": "fantasia3d_data", "category": "sds_pipeline_base"},
+  {"file": "fantasia3d_phonograph.obj", "asset_id": "f3d_phonograph", "source": "fantasia3d_data", "category": "sds_pipeline_base"}
+]

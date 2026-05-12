@@ -1,0 +1,27 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\caption{Extended robustness sweeps for spot and bunny (PartUV + ours). Light and view perturbations remain stable; the noise sweep is non-monotonic on both assets and is rejected by C5 at extreme $\sigma$, so the deployed atlas falls back to the baseline.}
+\label{tab:robust_extended}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Asset & Sweep & Level & PSNR & Drop & C5 \\
+\midrule
+spot & light & 2 & 43.87 & +1.12 & accept \\
+spot & light & 4 (ref) & 44.99 & 0.00 & accept \\
+spot & light & 8 & 44.80 & +0.19 & accept \\
+spot & view & 4 (ref) & 44.99 & 0.00 & accept \\
+spot & view & 12 & 45.00 & -0.01 & accept \\
+spot & noise & 0.01 & 33.35 & +12.13 & rollback \\
+spot & noise & 0.05 & 46.71 & -1.23 & accept \\
+\midrule
+bunny & light & 2 & 39.46 & -0.92 & accept \\
+bunny & light & 4 (ref) & 38.53 & 0.00 & accept \\
+bunny & light & 8 & 38.24 & +0.29 & accept \\
+bunny & view & 4 (ref) & 38.53 & 0.00 & accept \\
+bunny & view & 12 & 39.72 & -1.19 & accept \\
+bunny & noise & 0.01 & 42.22 & -3.15 & rollback \\
+bunny & noise & 0.05 & 24.59 & +14.48 & rollback \\
+\bottomrule
+\end{tabular}
+\end{table}

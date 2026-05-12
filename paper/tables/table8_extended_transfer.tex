@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\caption{Extended procedural noisy mesh transfer (PG-enh1). Two of ten cases trigger acceptance; the others roll back and deploy the baseline atlas. Real Trellis-3D / GET3D / DreamFusion outputs were not available at submission time and are listed in the limitations.}
+\label{tab:transfer_extended}
+\begin{tabular}{@{}lrrrl@{}}
+\toprule
+Asset & Baseline PSNR & Candidate PSNR & $\Delta$Final & C5 \\
+\midrule
+proc\_crumpled\_box & 28.58 & 38.23 & \textbf{+9.65} & accept \\
+proc\_warped\_cylinder & 28.38 & 35.67 & \textbf{+7.28} & accept \\
+proc\_dented\_torus & 39.97 & 39.97 & +0.00 & rollback \\
+proc\_folded\_panel & 30.12 & 30.12 & +0.00 & rollback \\
+proc\_lumpy\_ico & 37.28 & 37.28 & +0.00 & rollback \\
+proc\_melty\_star & 36.96 & 36.94 & +0.00 & rollback \\
+proc\_noisy\_capsule & 39.50 & 39.50 & +0.00 & rollback \\
+proc\_pinched\_ico & 37.17 & 37.42 & +0.00 & rollback \\
+proc\_ridged\_sphere & 36.81 & 36.81 & +0.00 & rollback \\
+proc\_twisted\_cone & 26.68 & 27.39 & +0.00 & rollback \\
+\bottomrule
+\end{tabular}
+\end{table}

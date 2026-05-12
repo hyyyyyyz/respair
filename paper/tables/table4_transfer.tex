@@ -1,0 +1,38 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\caption{Transfer and Robustness Study transfer results with candidate and deployed outputs separated. Panel (a) reports PSNR before C5 deployment; panel (b) reports the C5 audit columns that explain why high-PSNR candidates can still roll back.}
+\label{tab:transfer}
+\begin{tabular}{@{}lrrrrl@{}}
+\toprule
+\multicolumn{6}{@{}l}{\textbf{(a) Relit PSNR and deployment}}\\
+Procedural mesh & Baseline PSNR & Candidate PSNR & Final PSNR & $\Delta$Final & C5 \\
+\midrule
+proc\_crumpled\_box & 37.37 & 41.14 & 37.37 & +0.00 & rollback \\
+proc\_dented\_torus & 42.41 & 50.10 & 42.41 & +0.00 & rollback \\
+proc\_lumpy\_ico & 37.44 & 51.94 & 37.44 & +0.00 & rollback \\
+proc\_noisy\_capsule & 38.37 & 47.03 & 38.37 & +0.00 & rollback \\
+proc\_pinched\_ico & 37.30 & 49.93 & 37.30 & +0.00 & rollback \\
+proc\_ridged\_sphere & 38.53 & 50.13 & 38.53 & +0.00 & rollback \\
+proc\_twisted\_cone & 29.12 & 35.08 & 29.12 & +0.00 & rollback \\
+proc\_warped\_cylinder & 30.38 & 41.12 & 41.12 & \textbf{+10.74} & accept \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.5em}
+\begin{tabular}{@{}lrrrrl@{}}
+\toprule
+\multicolumn{6}{@{}l}{\textbf{(b) C5 audit for the candidate atlas}}\\
+Procedural mesh & $\Delta$Seam & $\Delta Q95$ & $\Delta$Util & $\Delta$Charts & C5 verdict \\
+\midrule
+proc\_crumpled\_box & +0\% & +0.12 & -0.25 & +0 & rollback \\
+proc\_dented\_torus & -82\% & +3.29 & -0.28 & +0 & rollback \\
+proc\_lumpy\_ico & -91\% & +6.87 & -0.35 & +0 & rollback \\
+proc\_noisy\_capsule & -75\% & +4.11 & -0.21 & +0 & rollback \\
+proc\_pinched\_ico & -79\% & +5.84 & -0.32 & +0 & rollback \\
+proc\_ridged\_sphere & -83\% & +5.12 & -0.43 & +0 & rollback \\
+proc\_twisted\_cone & -66\% & +7.62 & -0.37 & +0 & rollback \\
+proc\_warped\_cylinder & -82\% & -0.09 & -0.32 & +0 & accept \\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -1,0 +1,113 @@
+\documentclass{egPublStyle-PG2026/egpubl}
+\makeatletter
+\def\input@path{{egPublStyle-PG2026/}{./}}
+\makeatother
+\usepackage{egPublStyle-PG2026/pg2026}
+
+\SpecialIssueSubmission
+
+\usepackage[T1]{fontenc}
+\usepackage{egPublStyle-PG2026/dfadobe}
+\usepackage{cite}
+\BibtexOrBiblatex
+\electronicVersion
+\PrintedOrElectronic
+\ifpdf
+  \usepackage[pdftex]{graphicx}
+  \pdfcompresslevel=9
+\else
+  \usepackage[dvips]{graphicx}
+\fi
+\usepackage{egPublStyle-PG2026/egweblnk}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage[capitalise,nameinlink]{cleveref}
+
+\graphicspath{{../}{./}{../figures/}{../figures/main/}{../figures/qualitative_residual_chain/}}
+\input{math_commands}
+
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+
+\newcounter{algorithm}
+\crefname{algorithm}{Algorithm}{Algorithms}
+\Crefname{algorithm}{Algorithm}{Algorithms}
+\crefname{figure}{Fig.}{Figs.}
+\Crefname{figure}{Figure}{Figures}
+\crefname{table}{Table}{Tables}
+\Crefname{table}{Table}{Tables}
+\crefname{section}{Sec.}{Secs.}
+\Crefname{section}{Section}{Sections}
+
+\newenvironment{pseudocode}[1]{%
+  \refstepcounter{algorithm}%
+  \begin{figure}[t]
+  \centering
+  \begin{minipage}{0.95\linewidth}
+  \small
+  \textbf{Algorithm \thealgorithm: #1}\par\vspace{0.4em}
+  \hrule\vspace{0.5em}
+}{%
+  \vspace{0.5em}\hrule
+  \end{minipage}
+  \end{figure}
+}
+
+\title[PBR Baking-Error Atlases]%
+      {PBR Baking-Error Atlases for Selective UV Atlas Repair}
+
+\author[Anonymous Submission]%
+{\parbox{\textwidth}{\centering Anonymous Submission}
+\\
+{\parbox{\textwidth}{\centering Paper ID withheld for double-blind review}}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{sections/0_abstract}
+\begin{CCSXML}
+<ccs2012>
+<concept>
+<concept_id>10010147.10010371.10010352.10010380</concept_id>
+<concept_desc>Computing methodologies~Texturing</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+<concept>
+<concept_id>10010147.10010371.10010352.10010378</concept_id>
+<concept_desc>Computing methodologies~Reflectance modeling</concept_desc>
+<concept_significance>300</concept_significance>
+</concept>
+<concept>
+<concept_id>10010147.10010371.10010352.10010381</concept_id>
+<concept_desc>Computing methodologies~Mesh models</concept_desc>
+<concept_significance>300</concept_significance>
+</concept>
+</ccs2012>
+\end{CCSXML}
+\ccsdesc[500]{Computing methodologies~Texturing}
+\ccsdesc[300]{Computing methodologies~Reflectance modeling}
+\ccsdesc[300]{Computing methodologies~Mesh models}
+\printccsdesc
+\end{abstract}
+
+\input{sections/1_introduction}
+\input{sections/2_related}
+\input{sections/3_method}
+\input{sections/4_experiments}
+\input{sections/5_confounds}
+\input{sections/6_limitations}
+\input{sections/7_conclusion}
+
+\appendix
+\input{sections/A_appendix}
+
+\bibliographystyle{egPublStyle-PG2026/eg-alpha}
+\bibliography{references}
+
+\end{document}

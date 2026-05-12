@@ -1,0 +1,33 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\caption{Expanded real-mesh transfer (18 generated meshes from independent SDS / Trellis / Objaverse / threestudio init-shape sources). The C5 gate accepts 6/18 cases with +1.19 dB to +7.99 dB headroom on PartUV initialization; 12 rollbacks correctly preserve the baseline atlas. This raises the real-mesh acceptance rate to 33\% on PartUV-initialized assets where the residual evidence indicates atlas-defect leverage.}
+\label{tab:real_mesh}
+\begin{tabular}{@{}llrrrl@{}}
+\toprule
+Asset & Source & Init PSNR & Final PSNR & $\Delta$ & C5 \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Accepts}}\\
+ts\_potion & threestudio init & 31.11 & 39.10 & \textbf{+7.99} & accept \\
+f3d\_animal & Fantasia3D init & 31.32 & 37.71 & \textbf{+6.39} & accept \\
+ts\_animal & threestudio init & 36.02 & 41.79 & \textbf{+5.77} & accept \\
+ts\_nascar & threestudio init & 34.05 & 37.90 & \textbf{+3.85} & accept \\
+f3d\_head & Fantasia3D init & 30.76 & 34.37 & \textbf{+3.61} & accept \\
+ts\_cabin & threestudio init & 33.31 & 34.50 & +1.19 & accept \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Rollbacks}}\\
+ts\_blub & threestudio init & 35.27 & 35.27 & +0.00 & rollback \\
+ts\_env\_sphere & threestudio init & 44.03 & 44.03 & +0.00 & rollback \\
+ts\_teddy & threestudio init & 38.15 & 38.15 & +0.00 & rollback \\
+ts\_hand & threestudio init & 36.13 & 36.13 & +0.00 & rollback \\
+ts\_human & threestudio init & 36.85 & 36.85 & +0.00 & rollback \\
+f3d\_chair & Fantasia3D init & 31.85 & 31.85 & +0.00 & rollback \\
+f3d\_person & Fantasia3D init & 34.30 & 34.30 & +0.00 & rollback \\
+f3d\_phonograph & Fantasia3D init & 29.96 & 29.96 & +0.00 & rollback \\
+objav\_12a0b7dcb8 & Objaverse & 31.30 & 31.30 & +0.00 & rollback \\
+objav\_6ae341772c & Objaverse & 35.74 & 35.74 & +0.00 & rollback \\
+objav\_702bef9d8f & Objaverse & 31.25 & 31.25 & +0.00 & rollback \\
+objav\_8476c4170d & Objaverse & 24.83 & 24.83 & +0.00 & rollback \\
+\bottomrule
+\end{tabular}
+\end{table}

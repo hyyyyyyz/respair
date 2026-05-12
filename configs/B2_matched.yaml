@@ -1,0 +1,46 @@
+seed: 42
+data_root: /data/dip_1_ws/datasets/sample
+output_root: /data/dip_1_ws/runs/B2_baseline
+atlas_resolution: 1024
+render_resolution: 256
+visualization_resolution: 1024
+precision: bf16
+gradient_checkpointing: true
+mip_levels: 4
+views:
+  train: 6
+  holdout: 4
+lights:
+  train: 4
+  holdout: 4
+matched_protocol:
+  atlas_size: 1024
+  padding: 8
+  chart_count_window: 0.1
+  utilization_min: 0.5
+  distortion_tol: 2.0
+  raster_resolution: 256
+baselines:
+  xatlas_classical: {}
+  blender_uv:
+    blender_bin: blender
+    angle_limit_deg: 66.0
+    island_margin: 0.015625
+  partuv:
+    repo_root: /data/dip_1_ws/baseline_repos/PartUV
+    external_atlas: /data/dip_1_ws/atlases/B2/partuv/{asset}.npz
+  flexpara:
+    repo_root: /data/dip_1_ws/baseline_repos/FlexPara
+    external_atlas: /data/dip_1_ws/atlases/B2/flexpara/{asset}.npz
+  otuvgs:
+    temperature: 0.8
+  flatten_anything:
+    repo_root: /data/dip_1_ws/baseline_repos/FlattenAnything
+    external_atlas: /data/dip_1_ws/atlases/B2/flatten_anything/{asset}.npz
+  parapoint:
+    repo_root: /data/dip_1_ws/baseline_repos/ParaPoint
+    external_atlas: /data/dip_1_ws/atlases/B2/parapoint/{asset}.npz
+  visibility_param:
+    repo_root: /data/dip_1_ws/baseline_repos/VisibilityParam
+    external_atlas: /data/dip_1_ws/atlases/B2/visibility_param/{asset}.npz
+  matched_oracle: {}

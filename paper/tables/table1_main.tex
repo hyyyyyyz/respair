@@ -1,0 +1,46 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\caption{Main Anchor Evaluation results with candidate and deployed outputs separated. Panel (a) reports PSNR before C5 deployment; panel (b) exposes the C5 audit columns used to accept or roll back each candidate.}
+\label{tab:main}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+\multicolumn{7}{@{}l}{\textbf{(a) Relit PSNR and deployment}}\\
+Asset & Baseline & Init PSNR & Candidate PSNR & Final PSNR & $\Delta$Final & C5 \\
+\midrule
+bunny & Blender UV & 36.22 & 35.74 & 36.22 & +0.00 & rollback \\
+bunny & oracle & n/a & n/a & n/a & -- & rollback \\
+bunny & PartUV & 28.30 & 38.53 & 38.53 & \textbf{+10.23} & accept \\
+bunny & xatlas & 43.25 & 42.88 & 43.25 & +0.00 & rollback \\
+objaverse & Blender UV & 29.81 & 27.80 & 29.81 & +0.00 & rollback \\
+objaverse & oracle & n/a & n/a & n/a & -- & rollback \\
+objaverse & PartUV & 34.41 & 40.42 & 34.41 & +0.00 & rollback \\
+objaverse & xatlas & 45.50 & 45.68 & 45.50 & +0.00 & rollback \\
+spot & Blender UV & 43.04 & 40.10 & 43.04 & +0.00 & rollback \\
+spot & oracle & n/a & n/a & n/a & -- & rollback \\
+spot & PartUV & 30.32 & 44.99 & 44.99 & \textbf{+14.67} & accept \\
+spot & xatlas & 49.77 & 47.83 & 49.77 & +0.00 & rollback \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.5em}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+\multicolumn{7}{@{}l}{\textbf{(b) C5 audit for the candidate atlas}}\\
+Asset & Baseline & $\Delta$Seam & $\Delta Q95$ & $\Delta$Util & $\Delta$Charts & C5 verdict \\
+\midrule
+bunny & Blender UV & -100\% & +0.00 & -0.17 & -1 & rollback \\
+bunny & oracle & +0\% & +23.36 & -0.19 & +0 & rollback \\
+bunny & PartUV & -82\% & +2.55 & -0.37 & +0 & accept \\
+bunny & xatlas & +18\% & +13.68 & -0.26 & +0 & rollback \\
+objaverse & Blender UV & -34\% & +0.55 & -0.66 & +0 & rollback \\
+objaverse & oracle & +0\% & +1.05 & -0.34 & +0 & rollback \\
+objaverse & PartUV & +42\% & +6.69 & -0.25 & +0 & rollback \\
+objaverse & xatlas & -4\% & +0.70 & -0.35 & +0 & rollback \\
+spot & Blender UV & +44\% & +2.46 & -0.17 & +0 & rollback \\
+spot & oracle & +0\% & +37.22 & -0.10 & +0 & rollback \\
+spot & PartUV & -90\% & -0.90 & -0.15 & +0 & accept \\
+spot & xatlas & -15\% & +30.61 & -0.37 & +0 & rollback \\
+\bottomrule
+\end{tabular}
+\end{table*}

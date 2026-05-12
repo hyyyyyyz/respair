@@ -1,0 +1,8 @@
+flowchart LR
+    I[mesh + UV] --> C1[C1 PBR Baker]
+    C1 -->|residual| C2[C2 Local Chart Repair]
+    C2 -->|repair| C3[C3 Mip Allocator]
+    C3 -->|alloc| C4[C4 Seam Diagnostic<br/>(diagnostic only)]
+    C4 -->|seam| C5[C5 Validation Loop]
+    C5 -->|final atlas or rollback| O[final atlas]
+    style C4 stroke-dasharray: 5 5

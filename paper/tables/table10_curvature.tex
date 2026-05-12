@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\caption{Partition-independent chart-boundary curvature alignment. High-curvature edges are defined from mesh dihedral angles, not from PartUV labels. Higher IoU/precision means chart seams better coincide with geometry-defined part-like boundaries. Honest disclosure: by this geometry-only metric, xatlas's distortion-driven seams align with high-curvature edges more than PartUV-style semantic part charts.}
+\label{tab:curvature_alignment}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Asset & xatlas IoU & PartUV IoU & Ours IoU \\
+\midrule
+spot & 0.427 & 0.090 & 0.090 \\
+bunny & 0.000 & 0.000 & 0.000 \\
+objaverse & \textbf{0.960} & 0.000 & 0.000 \\
+ts\_animal & 0.025 & 0.003 & 0.003 \\
+\bottomrule
+\end{tabular}
+\end{table}

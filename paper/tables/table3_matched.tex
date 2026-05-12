@@ -1,0 +1,29 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\caption{Strict matched-control results. (a) The gain survives atlas-size, padding, and chart-count locks, but disappears under distortion, utilization, or all-lock protocols. (b) Absolute UV-proxy changes for the accepted cases: Q$_{95}$ distortion stays within $\pm$25\% but texture utilization drops 35--60\%; chart count and seam length are unchanged. This quantifies the localized UV-proxy cost the C5 gate is willing to pay for the +10--15 dB PBR gain.}
+\label{tab:matched}
+\begin{tabular}{@{}lrrll@{}}
+\toprule
+\multicolumn{5}{@{}l}{\textbf{(a) Relit PSNR delta under matched controls}}\\
+Condition & Spot $\Delta$ & Bunny $\Delta$ & matched OK & C5 \\
+\midrule
+Atlas-size and padding locked & \textbf{+14.67} & \textbf{+10.23} & yes & accept \\
+Chart count locked within +/-5\% & \textbf{+14.67} & \textbf{+10.23} & yes & accept \\
+Distortion Q95 locked & +0.00 & +0.00 & yes & rollback \\
+Texture utilization locked & +0.00 & +0.00 & yes & rollback \\
+All strict matched controls & +0.00 & +0.00 & yes & rollback \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.4em}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\multicolumn{5}{@{}l}{\textbf{(b) Absolute UV-proxy stats for accepted cases (init $\rightarrow$ deployed)}}\\
+Asset & $Q_{95}$ distortion & Utilization & Charts & Seam length \\
+\midrule
+spot/PartUV & 63.80 $\rightarrow$ 62.90 & 0.382 $\rightarrow$ 0.236 & 19 $\rightarrow$ 19 & 22.20 $\rightarrow$ 22.20 \\
+bunny/PartUV & 11.02 $\rightarrow$ 13.56 & 0.634 $\rightarrow$ 0.263 & 2 $\rightarrow$ 2 & 11.06 $\rightarrow$ 11.06 \\
+\bottomrule
+\end{tabular}
+\end{table}

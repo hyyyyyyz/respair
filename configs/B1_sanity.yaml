@@ -1,0 +1,21 @@
+seed: 42
+asset: bunny
+data_root: /data/dip_1_ws/datasets/sample
+atlas_resolution: 1024
+render_resolution: 256
+visualization_resolution: 1024
+views:
+  train: 6
+  holdout: 4
+lights:
+  train: 4
+  holdout: 4
+brdf:
+  model: ggx
+  default_roughness: 0.4
+  default_metallic: 0.0
+precision: bf16
+gradient_checkpointing: true
+backward_check: true
+mip_levels: 4
+output_root: /data/dip_1_ws/runs/B1_sanity

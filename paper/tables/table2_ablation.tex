@@ -1,0 +1,28 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\caption{Ablation Study summary with the disabled component or matched-control stress identified. Deltas are worst completed variants versus the full method; intentionally diagnostic rows are marked rather than used as validated component evidence.}
+\label{tab:ablation}
+\begin{tabularx}{\textwidth}{@{}llXrrll@{}}
+\toprule
+ID & Variant & Disabled / control & Spot $\Delta$ & Bunny $\Delta$ & Expected & Match \\
+\midrule
+A1 & base & C1 residual localization disabled & +0.00 & +0.00 & negative & $\times$ \\
+A2 & base & C1 channel-aware baker collapsed to RGB-only & -12.55 & -12.51 & negative & $\checkmark$ \\
+A3 & base & C2 local chart-repair actions disabled & -1.62 & -0.22 & negative & $\checkmark$ \\
+A4 & base & C3 residual-aware allocation replaced by uniform allocation & -1.11 & -0.30 & negative & $\checkmark$ \\
+A5 & base & C4 cross-channel seam diagnostic disabled$^\dagger$ & +0.00 & +0.00 & negative & $\times$ \\
+A6 & base & C5 held-out relighting gate removed & -0.62 & +1.56 & negative & $\checkmark$ \\
+A7 & base & procedural-transfer seam stress diagnostic & -0.22 & -0.10 & diagnostic & $\checkmark$ \\
+A8 & base & local-repair constraint replaced by unconstrained global re-unwrap & -14.67 & -10.23 & weak / rollback & $\checkmark$ \\
+A9 & base & single shared UV constraint replaced by per-channel UVs$^\dagger$ & +0.00 & +0.00 & weak / rollback & $\checkmark$ \\
+A12 & base & matched-padding control & +0.00 & +0.00 & matched gain & $\checkmark$ \\
+A14 & 1k,2k,4k & atlas-resolution sweep & -14.35 & -- & gain kept & $\checkmark$ \\
+A15 & ct,disney,ggx,lambert & BRDF model sweep & -0.87 & -- & gain kept & $\checkmark$ \\
+A16 & area,grazing,hdr,point & light-type sweep & -4.57 & -- & gain kept & $\checkmark$ \\
+A17 & 10p & edit-budget sweep & -1.22 & +0.00 & diagnostic & $\checkmark$ \\
+A18 & no\_mip & C3 explicit mip term disabled & +0.05 & -0.20 & negative & $\checkmark$ \\
+\multicolumn{7}{@{}p{0.96\textwidth}@{}}{\footnotesize $^\dagger$ Intentionally diagnostic; isolated signal is limited by the current ablation hooks (see \cref{sec:limitations}).}\\
+\bottomrule
+\end{tabularx}
+\end{table*}

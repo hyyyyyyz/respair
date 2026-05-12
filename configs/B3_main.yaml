@@ -1,0 +1,72 @@
+seed: 42
+data_root: /data/dip_1_ws/datasets/sample
+output_root: /data/dip_1_ws/runs/B3_main
+atlas_resolution: 1024
+render_resolution: 256
+visualization_resolution: 1024
+views:
+  proposal: 6
+  gate: 4
+  test: 4
+lights:
+  proposal: 4
+  gate: 4
+  test: 4
+brdf:
+  model: ggx
+oracle_pbr:
+  pattern: "voronoi_albedo+smooth_normal+region_roughness"
+  num_voronoi_seeds: 16
+repair:
+  top_k_ratio: 0.15
+  top_k_max: 32
+  beam_size: 4
+  outer_iters: 3
+  edit_budget: 0.15
+  distortion_area_max: 2.0
+  distortion_angle_max: 35.0
+  eta_seam: 0.25
+  lambda_d: 1.0
+  lambda_theta: 0.01
+  lambda_n: 0.02
+  lambda_b: 0.25
+  lambda_render: 1.0
+  render_eval_views: 1
+  render_eval_lights: 1
+allocator:
+  w_mip: 1.0
+  w_vis: 0.5
+  w_freq: 0.5
+  w_residual: 1.0
+  temperature: 1.0
+  min_texel_fraction: 0.05
+seam_loss:
+  channel_weights:
+    albedo: 0.5
+    normal: 1.0
+    roughness: 1.0
+    metallic: 1.0
+matched_protocol:
+  atlas_size: 1024
+  padding: 8
+  chart_count_window: 0.08
+  utilization_min: 0.5
+  distortion_tol: 1.5
+  raster_resolution: 256
+c5_guard:
+  delta_psnr_min: 0.3
+  seam_residual_drop_min: 0.12
+  distortion_tail_epsilon: 3.0
+precision: bf16
+gradient_checkpointing: true
+mip_levels: 4
+baselines:
+  xatlas_classical: {}
+  blender_uv:
+    blender_bin: blender
+    angle_limit_deg: 66.0
+    island_margin: 0.015625
+  partuv:
+    repo_root: /data/dip_1_ws/baseline_repos/PartUV
+    external_atlas: /data/dip_1_ws/atlases/B2/partuv/{asset}.npz
+  matched_oracle: {}

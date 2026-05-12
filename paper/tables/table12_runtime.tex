@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\caption{End-to-end wall-clock and peak GPU memory for representative cases on a single RTX 4090 (PyTorch 2.7.1 cu128, bf16 baker). Wall-clock includes oracle PBR setup, baking, residual attribution, candidate search, C5 audit, and final atlas export; PartUV preprocessing of the upstream atlas is excluded and reported separately.}
+\label{tab:runtime}
+\begin{tabular}{@{}lrrrl@{}}
+\toprule
+Case & Faces & Wall-clock (s) & Peak GPU (GB) & C5 \\
+\midrule
+spot / PartUV (accept) & 372 & 1313 & 0.59 & accept \\
+bunny / PartUV (accept) & 1280 & 1814 & 0.59 & accept \\
+spot / xatlas (rollback) & 372 & 2578 & 0.53 & rollback \\
+objaverse / xatlas (rollback) & 192 & 166 & 0.53 & rollback \\
+proc\_warped\_cylinder / PartUV (accept) & 1152 & 158 & 0.58 & accept \\
+ts\_animal / PartUV (real, accept) & 3068 & 2777 & 0.59 & accept \\
+f3d\_animal / PartUV (real, accept) & 3068 & 16772 & 0.96 & accept \\
+\bottomrule
+\end{tabular}
+\end{table}

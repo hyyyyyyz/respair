@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\caption{A1 structural rerun: proposal/gate/test 3-split with multi-seed (n=3). Headline PSNR is on the held-out test split only; candidate search and C5 use disjoint splits. PSNR is mean$\pm$std over split seeds.}
+\label{tab:a1_split}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Asset & Baseline & n & Init PSNR & Final PSNR & $\Delta$Final & Accept \\
+\midrule
+spot & xatlas & 3 & 48.71$\pm$0.88 & 48.71$\pm$0.88 & 0.00$\pm$0.00 & 0/3 \\
+spot & PartUV & 3 & 31.20$\pm$0.40 & 43.78$\pm$1.23 & \textbf{12.58$\pm$0.83} & 3/3 \\
+bunny & PartUV & 3 & 28.21$\pm$0.08 & 40.05$\pm$0.81 & \textbf{11.84$\pm$0.89} & 3/3 \\
+objaverse & xatlas & 3 & 45.01$\pm$0.93 & 45.01$\pm$0.93 & 0.00$\pm$0.00 & 0/3 \\
+\bottomrule
+\end{tabular}
+\end{table}

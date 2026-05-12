@@ -1,0 +1,6 @@
+inherits: ../B3_main.yaml
+output_root: runs/B4_ablation
+b3_output_root: runs/B3_main
+ablation:
+  id: A2
+

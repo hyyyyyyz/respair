@@ -1,0 +1,32 @@
+% DRAFT — apply during W4 restructure (replaces paper/sections/0_abstract.tex)
+% Conditional on DiLiGenT-MV producing a positive captured-target signal
+% (per the codex W1 D7 decision gate). If captured is negative, fall back
+% to the current 7.5 abstract.
+
+UV atlases for procedural, generated, and noisy assets are usually
+judged by geometry-facing proxies, but production PBR pipelines fail
+through a different interface: residual hot spots, mip leakage, and
+cross-channel seams that only become visible after baking and
+relighting. We introduce a residual-driven selective UV atlas repair
+method that treats the held-out PBR relighting residual as the
+deployment signal. The pipeline bakes albedo, normal, roughness, and
+metallic channels through a differentiable PBR renderer, attributes
+residuals back to faces and charts, repairs only high-residual local
+charts, reallocates a fixed texel budget with mip-aware demand, and
+deploys the candidate atlas only if a matched-control C5 gate accepts
+it on a held-out gate split. We validate the method against three
+target-signal regimes: a controlled synthetic oracle (spot, bunny,
+Objaverse), a self-described oracle on procedural noisy and
+SDS-pipeline init shapes, and \emph{captured imagery} from
+DiLiGenT-MV (5 objects, 20 views, 96 calibrated lights/view), with
+disjoint proposal/gate/test splits and multi-seed reruns. Across
+captured DiLiGenT-MV cases the gate triggers on the residual-heavy
+PartUV atlases while rolling back already-strong xatlas baselines;
+across the synthetic/self-described regimes the same selectivity
+holds (3/20 main accepts, 2/5 SDS-init real meshes). A strict
+matched-control study shows the gain survives atlas-size, padding,
+and chart-count locks but vanishes under distortion-tail or
+utilization locks. The method is therefore not a universal UV
+optimizer; it is a selective, rollback-gated way to trade localized
+UV proxy metrics for substantially better downstream PBR fidelity,
+validated against \emph{captured} as well as oracle target signals.

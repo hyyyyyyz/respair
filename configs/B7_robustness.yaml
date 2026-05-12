@@ -1,0 +1,30 @@
+inherits: B3_main.yaml
+output_root: /data/dip_1_ws/runs/B7_robustness
+data_root: /data/dip_1_ws/datasets/sample
+b7_robustness:
+  asset: spot
+  baseline: partuv
+  transfer_root: /data/dip_1_ws/runs/B7_transfer
+  methods:
+    - ours
+  robustness_data_root: /data/dip_1_ws/datasets/B7_robustness
+  noise_sigmas:
+    - 0.0
+    - 0.01
+    - 0.02
+    - 0.05
+  view_holdouts:
+    - 4
+    - 6
+    - 8
+    - 12
+  light_holdouts:
+    - 2
+    - 4
+    - 6
+    - 8
+  reference:
+    noise_sigma: 0.0
+    view_holdout: 4
+    light_holdout: 4
+  mild_psnr_drop_max: 2.0

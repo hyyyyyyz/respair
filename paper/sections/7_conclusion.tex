@@ -1,0 +1,6 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper argues that PBR baking residual should be treated as a first-class atlas quality signal for selective UV atlas repair. Geometry-based UV metrics remain necessary, but they can miss the failures users see after baking and relighting: residual hot spots, mip leakage, and cross-channel seam artifacts. The proposed differentiable baking-error atlas localizes those failures, proposes only local repairs to a fixed upstream atlas, reallocates a fixed texel budget, and deploys the result only through a matched-control gate.
+
+The evidence supports a selective method. In the accepted spot/PartUV, bunny/PartUV, and warped-cylinder cases, relit \PSNR{} improves by roughly 10--15 dB. In the other tested cases, C5 rolls back and preserves the baseline. The matched-control study makes the trade-off explicit: the gain is not from atlas size, padding, or chart count, but it does require localized distortion and utilization freedom. That is the practical message of the draft. Residual-driven repair can improve PBR fidelity when atlas proxies fail, but it should be deployed as a gate, not as an unconditional replacement for production UV tools.

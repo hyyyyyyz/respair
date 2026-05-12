@@ -1,0 +1,6 @@
+inherits: ../B3_main.yaml
+output_root: /data/dip_1_ws/runs/B5_matched
+b3_output_root: runs/B3_main
+b5_strict:
+  id: B5.5
+

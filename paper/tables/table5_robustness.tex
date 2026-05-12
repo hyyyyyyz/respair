@@ -1,0 +1,24 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\caption{Robustness sweeps on the spot/PartUV accepted case. Positive drop means lower PSNR than the sweep reference; the noise sigma=0.01 anomaly is retained.}
+\label{tab:robustness}
+\begin{tabular}{@{}lrrrl@{}}
+\toprule
+Sweep & Level & PSNR & Drop & C5 \\
+\midrule
+light & 2.00 & 43.87 & +1.12 & accept \\
+light & 4.00 & 44.99 & +0.00 & accept \\
+light & 6.00 & 44.97 & +0.02 & accept \\
+light & 8.00 & 44.80 & +0.19 & accept \\
+noise & 0.00 & 45.48 & +0.00 & accept \\
+noise & 0.01 & 33.35 & +12.13 & rollback \\
+noise & 0.02 & 46.28 & -0.80 & accept \\
+noise & 0.05 & 46.71 & -1.23 & accept \\
+view & 4.00 & 44.99 & +0.00 & accept \\
+view & 6.00 & 45.58 & -0.60 & accept \\
+view & 8.00 & 45.67 & -0.68 & accept \\
+view & 12.00 & 45.00 & -0.01 & accept \\
+\bottomrule
+\end{tabular}
+\end{table}

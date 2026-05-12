@@ -1,0 +1,16 @@
+torch==2.7.1
+torchvision==0.22.1
+nvdiffrast
+trimesh
+xatlas
+mitsuba==3.5.0
+drjit
+lpips
+scikit-image
+imageio
+PyYAML
+tqdm
+numpy
+huggingface_hub
+Pillow
+

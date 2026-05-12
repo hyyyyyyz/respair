@@ -1,0 +1,70 @@
+# ===== Large data / experiment artifacts =====
+runs/
+datasets/
+ckpts/
+atlases/
+residual_atlases/
+tmp/
+3rdparty/
+*.zip
+*.tar
+*.tar.gz
+DiLiGenT-MV.zip
+
+# ===== Per-mesh / per-run binaries =====
+*.npz
+*.pt
+*.pth
+*.safetensors
+*.bin
+*.glb
+*.ply
+*.fbx
+
+# ===== Python =====
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.coverage
+
+# ===== Paper build artifacts =====
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.brf
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.lbl
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+paper/*.toc
+paper/main_round*.pdf
+paper/main_round*_*.pdf
+paper-backup-*
+
+# ===== Internal research workflow artifacts =====
+.aris/
+research-wiki/
+idea-stage/
+idea-stage-prcv-archived-*
+refine-logs-prcv-archived/
+paper-plan/
+LaTeX2e_Proceedings_Templates/
+
+# ===== OS / IDE =====
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
+
+# ===== Local cache =====
+.claude/
+.codex/
+*.preW1
