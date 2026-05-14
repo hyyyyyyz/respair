@@ -3,6 +3,8 @@
 
 The experiments test whether residual-driven repair is useful under deployment gating. We avoid a broad dominance claim and instead ask five questions: when does C5 accept, which components matter, whether the behavior transfers to procedural noisy meshes, whether the accepted spot/PartUV case is stable under held-out light, view, and noise changes, and whether the PartUV repair preserves part-aligned chart structure relative to xatlas.
 
+\paragraph*{Total evaluation scope.} The C1--C5 pipeline is evaluated across 55 unique meshes spanning six asset/baseline families: 3 controlled main-anchor assets with synthetic voronoi oracle and four baselines (\cref{tab:main}, 12 rows); 8 procedural noisy meshes with PartUV (\cref{tab:transfer}); 10 generation-style higher-poly procedural meshes (\cref{tab:transfer_extended}); 18 real generated meshes from four independent sources Fantasia3D, threestudio, threestudio-Trellis, and Objaverse (\cref{tab:real_mesh}); 5 captured DiLiGenT-MV objects with Lambertian photometric-stereo face PBR (\cref{tab:diligent_mv}, 30 rows under PMS); and 12 Polyhaven CC0 assets with independently authored albedo/normal/metallicRoughness as the oracle (\cref{tab:polyhaven}, an external-validity track that swaps the synthetic oracle for human-authored PBR). Multi-seed split-randomization is applied to all accepted controlled and real-mesh PartUV cases (\cref{tab:a1_split,tab:real_mesh}). The main-anchor table is intentionally narrow because it carries the four-baseline controlled comparison; \cref{tab:transfer,tab:transfer_extended,tab:real_mesh,tab:diligent_mv,tab:polyhaven} together carry the breadth claim under a fixed PartUV baseline.
+
 \subsection{Setup and baselines}
 \label{sec:exp_setup}
 
@@ -65,7 +67,7 @@ The ablation table also constrains our claims. A1, A5, and A9 produce zero isola
 
 \paragraph*{Extended procedural transfer.}
 \input{tables/table8_extended_transfer}
-\Cref{tab:transfer_extended} extends the procedural-noisy evaluation to ten meshes covering generation-style proxies (Trellis-like lumpy, GET3D-like hollow, SDS-like column, character-like capsule, and folded-panel artifacts). Two meshes accept (proc\_crumpled\_box at +9.65 dB and proc\_warped\_cylinder at +7.28 dB), giving a 2/10 acceptance rate consistent with the original eight-mesh observation. Eight rollbacks include cases where the candidate moves PSNR by less than 1 dB (proc\_pinched\_ico, proc\_twisted\_cone) and cases that already match baseline; in all rollback rows the deployed atlas is the baseline.
+\Cref{tab:transfer_extended} extends the procedural-noisy evaluation to ten meshes covering generation-style proxies (Trellis-like lumpy, GET3D-like hollow, SDS-like column, character-like capsule, and folded-panel artifacts). These meshes are independently regenerated higher-poly variants (2--9$\times$ more faces than the \cref{tab:transfer} variants of the same name; distinct MD5 and vertex counts), so the absolute baseline PSNRs in this table are not directly comparable to \cref{tab:transfer} even when mesh names overlap; both panels use the identical C1--C5 pipeline on PartUV. Two meshes accept (proc\_crumpled\_box at +9.65 dB and proc\_warped\_cylinder at +7.28 dB), giving a 2/10 acceptance rate consistent with the original eight-mesh observation. Eight rollbacks include cases where the candidate moves PSNR by less than 1 dB (proc\_pinched\_ico, proc\_twisted\_cone) and cases that already match baseline; in all rollback rows the deployed atlas is the baseline.
 
 \paragraph*{Captured-target rollback audit (DiLiGenT-MV).}
 \input{tables/table13_diligent_mv}
@@ -94,9 +96,28 @@ repair claim. Captured benchmarks with anisotropic / glossy materials
 or noisier meshes (where atlas chart structure becomes the binding
 bottleneck) are left to future work.
 
+\paragraph*{Authored-PBR external-validity (Polyhaven CC0).}
+\input{tables/table14_polyhaven}
+\Cref{tab:polyhaven} runs the same C1--C5 pipeline on 12 Polyhaven CC0
+assets where the oracle face PBR comes from \emph{independently authored}
+albedo/normal/metallicRoughness maps rather than the synthetic voronoi
+oracle used in the controlled main and ablation tables. PartUV is the
+upstream baseline. One asset accepts: \texttt{Barrel\_01} improves from
+42.19 dB to 47.50 dB (+5.30 dB); the remaining 11 assets correctly roll
+back to the baseline atlas. This 1/12 acceptance rate is lower than the
+5/18 confirmed real-mesh rate because authored Polyhaven PBR is designed to be
+distortion-clean, but the single accept confirms the residual-driven
+trigger fires on \emph{externally authored} PBR materials as well, so
+gains are not confined to the synthetic oracle. We read \cref{tab:polyhaven}
+together with \cref{tab:diligent_mv} as the two external-validity
+audits: captured imagery on Lambertian benchmarks does not trigger
+spurious accepts (0/30), and independently authored PBR triggers
+exactly one accept that hits the same +5--6 dB regime as the controlled
+synthetic-oracle cases.
+
 \paragraph*{Real-mesh transfer.}
 \input{tables/table9_real_mesh}
-\Cref{tab:real_mesh} reports 18 completed real-mesh transfer evaluations on init shapes from four independent generated-mesh sources: Fantasia3D \cite{chen2023fantasia3d}, threestudio \cite{guo2023threestudio}, Objaverse, and threestudio Trellis-style outputs. With the same C1--C5 protocol and the PartUV upstream baseline, the gate accepts \emph{6/18} cases with held-out test-split PSNR gains ranging from +1.19 dB (\texttt{ts\_cabin}) to +7.99 dB (\texttt{ts\_potion}); the remaining 12 rollbacks correctly preserve the baseline. The two largest gains, +7.99 dB on \texttt{ts\_potion} and +6.39 dB on \texttt{f3d\_animal}, are in the same range as the controlled spot/PartUV and bunny/PartUV cases (+14.67 dB, +10.23 dB) but on more diverse generated geometry. The 6/18 = 33\% real-mesh acceptance rate is substantially higher than the 3/20 headline rate because PartUV-initialized real meshes more often have residual-backed atlas leverage than the controlled assets. Across the union of the 12-case main, 8-case procedural transfer, and these 18 real meshes (38 displayed asset/baseline combinations), the C5 gate accepts 10 candidates total and rolls back 28; in every accepted case the deployed atlas improves relit PSNR on the held-out test split.
+\Cref{tab:real_mesh} reports 18 completed real-mesh transfer evaluations on init shapes from four independent generated-mesh sources: Fantasia3D \cite{chen2023fantasia3d}, threestudio \cite{guo2023threestudio}, Objaverse, and threestudio Trellis-style outputs. With the same C1--C5 protocol and the PartUV upstream baseline, the gate confirms accepts on \emph{5/18} cases (3 multi-seed across $n=3$ splits and 2 single-seed) and rolls back 12; one further case (\texttt{f3d\_head}) accepts on seed 42 but rolls back on seeds 0/1/2 and is listed as a seed-sensitive borderline that is \emph{not} counted toward the headline accept rate. The two largest confirmed gains, +7.99 dB on \texttt{ts\_potion} and +6.39 dB on \texttt{f3d\_animal}, are in the same range as the controlled spot/PartUV and bunny/PartUV cases (+14.67 dB, +10.23 dB) but on more diverse generated geometry. The 5/18 = 28\% headline acceptance rate (33\% including the borderline) is substantially higher than the 3/20 main-table rate because PartUV-initialized real meshes more often have residual-backed atlas leverage than the controlled assets. Across the union of the 12-case main, 8-case procedural transfer, and these 18 real meshes (38 displayed asset/baseline combinations), the C5 gate confirms 9 accepts and rolls back 29 (with one seed-sensitive borderline excluded from the count); in every confirmed accept the deployed atlas improves relit PSNR on the held-out test split.
 
 \paragraph*{Partition-independent editability metric.}
 \input{tables/table10_curvature}

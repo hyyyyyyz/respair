@@ -1,0 +1,25 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\caption{Polyhaven CC0 authored-PBR external-validity track: 12 independently-authored PBR assets evaluated with the same C1--C5 pipeline using the authored albedo/normal/metallicRoughness as the oracle face PBR (rather than the synthetic voronoi oracle used elsewhere). One accept (\texttt{Barrel\_01}, +5.30 dB) confirms that residual-driven repair triggers on independently authored PBR materials, not only on the synthetic oracle; the remaining 11 rollbacks correctly preserve the baseline atlas.}
+\label{tab:polyhaven}
+\begin{tabular}{@{}lrrrl@{}}
+\toprule
+Asset & Init PSNR & Final PSNR & $\Delta$ & C5 \\
+\midrule
+Barrel\_01 & 42.19 & 47.50 & \textbf{+5.30} & accept \\
+\midrule
+ArmChair\_01 & 48.14 & 48.14 & +0.00 & rollback \\
+Camera\_01 & 65.73 & 65.73 & +0.00 & rollback \\
+Chandelier\_01 & 28.58 & 28.58 & +0.00 & rollback \\
+ClassicConsole\_01 & 39.65 & 39.65 & +0.00 & rollback \\
+CoffeeTable\_01 & 37.18 & 37.18 & +0.00 & rollback \\
+Drill\_01 & 53.49 & 53.49 & +0.00 & rollback \\
+GreenChair\_01 & 45.17 & 45.17 & +0.00 & rollback \\
+Lantern\_01 & 53.88 & 53.88 & +0.00 & rollback \\
+Sofa\_01 & 36.37 & 36.37 & +0.00 & rollback \\
+Television\_01 & 37.74 & 37.74 & +0.00 & rollback \\
+Ukulele\_01 & 52.29 & 52.29 & +0.00 & rollback \\
+\bottomrule
+\end{tabular}
+\end{table}
